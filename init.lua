@@ -15,3 +15,6 @@ for _, source in ipairs {
 end
 
 astronvim.conditional_func(astronvim.user_plugin_opts("polish", nil, false))
+
+----------- my changes  ---------------
+vim.api.nvim_command("inoremap ww <Esc>")
