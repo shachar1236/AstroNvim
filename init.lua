@@ -17,5 +17,4 @@ end
 astronvim.conditional_func(astronvim.user_plugin_opts("polish", nil, false))
 
 ----------- my changes  ---------------
-vim.api.nvim_command("inoremap ww <Esc>")
---require('nvim-treesitter.install').compilers = { "gcc" }
+require('personal')
