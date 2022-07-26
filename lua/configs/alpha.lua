@@ -23,7 +23,7 @@ alpha.setup(astronvim.user_plugin_opts("plugins.alpha", {
       }, false),
       opts = { position = "center", hl = "DashboardHeader" },
     },
-    { type = "padding", val = 5 },
+    { type = "padding", val = 4 },
     {
       type = "group",
       val = {
