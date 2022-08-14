@@ -17,5 +17,4 @@ end
 astronvim.conditional_func(astronvim.user_plugin_opts("polish", nil, false))
 
 ----------- my changes  ---------------
-require('personal')
-require('packer-plugins')
+require "personal"
