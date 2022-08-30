@@ -16,3 +16,8 @@ vim.api.nvim_set_keymap("n", "g<s-tab>", ":bprev<CR>", { noremap = true })
 vim.api.nvim_set_option("tabstop", 4)
 vim.api.nvim_set_option("shiftwidth", 4)
 vim.api.nvim_set_option("expandtab", true)
+-- gui --
+vim.api.nvim_set_option("mouse", "a")
+vim.api.nvim_set_option("guifont", "Hack NF:h12")
+
+vim.g.neovide_transparency = 0.97
