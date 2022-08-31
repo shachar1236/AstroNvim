@@ -9,8 +9,8 @@ vim.api.nvim_set_keymap("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { noremap = true })
 vim.api.nvim_set_keymap("v", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true })
 vim.api.nvim_set_keymap("v", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true })
 -- move between buffers --
-vim.api.nvim_set_keymap("n", "g<tab>", ":bnext<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "g<s-tab>", ":bprev<CR>", { noremap = true })
+-- vim.api.nvim_set_keymap("n", "g<tab>", ":bnext<CR>", { noremap = true })
+-- vim.api.nvim_set_keymap("n", "g<s-tab>", ":bprev<CR>", { noremap = true })
 
 -- tab size --
 vim.api.nvim_set_option("tabstop", 4)

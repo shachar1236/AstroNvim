@@ -6,7 +6,7 @@ maps[""]["<Space>"] = "<Nop>"
 
 -- Normal --
 -- Standard Operations
-maps.n["<leader>w"] = { "<cmd>w<cr>", desc = "Save" }
+maps.n["<leader>W"] = { "<cmd>w<cr>", desc = "Save" }
 maps.n["<leader>q"] = { "<cmd>q<cr>", desc = "Quit" }
 maps.n["<leader>h"] = { "<cmd>nohlsearch<cr>", desc = "No Highlight" }
 maps.n["<leader>u"] = { function() astronvim.toggle_url_match() end, desc = "Toggle URL Highlights" }
@@ -15,6 +15,25 @@ maps.n["gx"] = { function() astronvim.url_opener() end, desc = "Open the file un
 maps.n["<C-s>"] = { "<cmd>w!<cr>", desc = "Force write" }
 maps.n["<C-q>"] = { "<cmd>q!<cr>", desc = "Force quit" }
 maps.n["Q"] = "<Nop>"
+
+-- window --
+-- splits--
+maps.n["<leader>wsv"] = { "<cmd>vs<cr>", desc = "Vertical split" }
+maps.n["<leader>wsh"] = { "<cmd>split<cr>", desc = "Horizontal split" }
+
+maps.n["<leader>wc"] = { "<C-w>c", desc = "Close window" }
+
+-- move between splits --
+maps.n["<leader>wh"] = { "<C-w>h", desc = "Go to left window" }
+maps.n["<leader>wj"] = { "<C-w>j", desc = "Go to the window below" }
+maps.n["<leader>wk"] = { "<C-w>k", desc = "Go to the window above" }
+maps.n["<leader>wl"] = { "<C-w>l", desc = "Go to right window" }
+
+-- change splits size --
+maps.n["<leader>w+"] = { "<C-w>1+", desc = "Increase split size" }
+maps.n["<leader>w-"] = { "<C-w>1-", desc = "Decrease split size" }
+maps.n["<leader>w="] = { "<C-w>=", desc = "Equalize split size" }
+maps.n["<leader>w_"] = { "<C-w>_", desc = "Maximize current split size" }
 
 -- Packer
 maps.n["<leader>pc"] = { "<cmd>PackerCompile<cr>", desc = "Packer Compile" }
