@@ -24,10 +24,10 @@ maps.n["<leader>wsh"] = { "<cmd>split<cr>", desc = "Horizontal split" }
 maps.n["<leader>wc"] = { "<C-w>c", desc = "Close window" }
 
 -- move between splits --
-maps.n["<leader>wh"] = { "<C-w>h", desc = "Go to left window" }
-maps.n["<leader>wj"] = { "<C-w>j", desc = "Go to the window below" }
-maps.n["<leader>wk"] = { "<C-w>k", desc = "Go to the window above" }
-maps.n["<leader>wl"] = { "<C-w>l", desc = "Go to right window" }
+-- maps.n["<leader>wh"] = { "<C-w>h", desc = "Go to left window" }
+-- maps.n["<leader>wj"] = { "<C-w>j", desc = "Go to the window below" }
+-- maps.n["<leader>wk"] = { "<C-w>k", desc = "Go to the window above" }
+-- maps.n["<leader>wl"] = { "<C-w>l", desc = "Go to right window" }
 
 -- change splits size --
 maps.n["<leader>w+"] = { "<C-w>1+", desc = "Increase split size" }
