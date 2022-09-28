@@ -6,6 +6,10 @@ local mappings = {
       f = { name = "File" },
       p = { name = "Packer" },
       l = { name = "LSP" },
+      w = { name = "Window"},
+      ["w"] = {
+        s = { name = "Split" },
+      },
     },
   },
 }

@@ -35,6 +35,22 @@ maps.n["<leader>w-"] = { "<C-w>1-", desc = "Decrease split size" }
 maps.n["<leader>w="] = { "<C-w>=", desc = "Equalize split size" }
 maps.n["<leader>w_"] = { "<C-w>_", desc = "Maximize current split size" }
 
+-- debugger --
+maps.n["<leader>dG"] = { "<cmd>lua require('config.vimspector').generate_debug_profile()<cr>", desc = "Generate Debug Profile" }
+maps.n["<leader>dI"] = { "<cmd>VimspectorInstall<cr>", desc = "Install" }
+maps.n["<leader>dU"] = { "<cmd>VimspectorUpdate<cr>", desc = "Update" }
+maps.n["<leader>dR"] = { "<cmd>call vimspector#RunToCursor()<cr>", desc = "Run to Cursor" }
+maps.n["<leader>dc"] = { "<cmd>call vimspector#Continue()<cr>", desc = "Continue" }
+maps.n["<leader>di"] = { "<cmd>call vimspector#StepInto()<cr>", desc = "Step Into" }
+maps.n["<leader>do"] = { "<cmd>call vimspector#StepOver()<cr>", desc = "Step Over" }
+maps.n["<leader>ds"] = { "<cmd>call vimspector#Launch()<cr>", desc = "Start" }
+maps.n["<leader>dt"] = { "<cmd>call vimspector#ToggleBreakpoint()<cr>", desc = "Toggle Breakpoint" }
+maps.n["<leader>du"] = { "<cmd>call vimspector#StepOut()<cr>", desc = "Step Out" }
+maps.n["<leader>dS"] = { "<cmd>call vimspector#Stop()<cr>", desc = "Stop" }
+maps.n["<leader>dr"] = { "<cmd>call vimspector#Restart()<cr>", desc = "Restart" }
+maps.n["<leader>dx"] = { "<cmd>VimspectorReset<cr>", desc = "Reset" }
+maps.n["<leader>dH"] = { "<cmd>lua require('config.vimspector').toggle_human_mode()<cr>", desc = "Toggle HUMAN mode" }
+
 -- Packer
 maps.n["<leader>pc"] = { "<cmd>PackerCompile<cr>", desc = "Packer Compile" }
 maps.n["<leader>pi"] = { "<cmd>PackerInstall<cr>", desc = "Packer Install" }
@@ -43,7 +59,7 @@ maps.n["<leader>pS"] = { "<cmd>PackerStatus<cr>", desc = "Packer Status" }
 maps.n["<leader>pu"] = { "<cmd>PackerUpdate<cr>", desc = "Packer Update" }
 
 -- Alpha
-if is_available "alpha-nvim" then maps.n["<leader>d"] = { "<cmd>Alpha<cr>", desc = "Alpha Dashboard" } end
+if is_available "alpha-nvim" then maps.n["<leader>D"] = { "<cmd>Alpha<cr>", desc = "Alpha Dashboard" } end
 
 -- Bufdelete
 if is_available "bufdelete.nvim" then

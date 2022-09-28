@@ -267,6 +267,13 @@ local astro_plugins = {
     event = "BufWritePost",
     config = function() require "configs.session_manager" end,
   },
+
+  -- debugger --
+  ["puremourning/vimspector"] = {
+  cmd = { "VimspectorInstall", "VimspectorUpdate" },
+    fn = { "vimspector#Launch()", "vimspector#ToggleBreakpoint", "vimspector#Continue" },
+    config = function() require("config.vimspector").setup() end,
+  },
 }
 
 if astronvim.updater.snapshot then
