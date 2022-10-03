@@ -18,6 +18,10 @@ vim.api.nvim_set_option("shiftwidth", 4)
 vim.api.nvim_set_option("expandtab", true)
 -- gui --
 vim.api.nvim_set_option("mouse", "a")
-vim.api.nvim_set_option("guifont", "Hack NF:h12")
+if vim.loop.os_uname().sysname == "Linux" then
+    vim.api.nvim_set_option("guifont", "JetBrainsMono Nerd Font Mono:h9")
+else
+    vim.api.nvim_set_option("guifont", "JetBrainsMono Nerd Font Mono:h12")
+end
 
 vim.g.neovide_transparency = 0.97
