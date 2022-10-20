@@ -22,6 +22,7 @@ if vim.loop.os_uname().sysname == "Linux" then
   vim.api.nvim_set_option("guifont", "JetBrainsMono Nerd Font Mono:h8")
 else
   vim.api.nvim_set_option("guifont", "JetBrainsMono Nerd Font Mono:h10")
+  require("nvim-treesitter.install").compilers = { "zig" }
 end
 
 vim.g.neovide_transparency = 0.97
