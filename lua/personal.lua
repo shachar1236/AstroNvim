@@ -13,9 +13,14 @@ vim.api.nvim_set_keymap("v", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true })
 -- vim.api.nvim_set_keymap("n", "g<s-tab>", ":bprev<CR>", { noremap = true })
 
 -- tab size --
-vim.api.nvim_set_option("tabstop", 4)
-vim.api.nvim_set_option("shiftwidth", 4)
-vim.api.nvim_set_option("expandtab", true)
+-- vim.api.nvim_set_option("tabstop", 4)
+-- vim.api.nvim_set_option("shiftwidth", 4)
+-- vim.api.nvim_set_option("expandtab", true)
+vim.cmd [[
+set tabstop=4
+set shiftwidth=4
+set expandtab
+]]
 -- gui --
 vim.api.nvim_set_option("mouse", "a")
 if vim.loop.os_uname().sysname == "Linux" then
