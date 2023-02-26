@@ -33,6 +33,7 @@
 <h2>Contents</h2>
 <ul>
 <li><a href="#Functions">Functions</a></li>
+<li><a href="#Fields">Fields</a></li>
 </ul>
 
 
@@ -41,6 +42,7 @@
   <li><a href="../modules/core.utils.git.html">core.utils.git</a></li>
   <li><a href="../modules/core.utils.html">core.utils</a></li>
   <li><a href="../modules/core.utils.lsp.html">core.utils.lsp</a></li>
+  <li><a href="../modules/core.utils.mason.html">core.utils.mason</a></li>
   <li><strong>core.utils.status</strong></li>
   <li><a href="../modules/core.utils.ui.html">core.utils.ui</a></li>
   <li><a href="../modules/core.utils.updater.html">core.utils.updater</a></li>
@@ -87,6 +89,14 @@
 	<td class="summary">Get the foreground color group for the current filetype</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#astronvim.status.hl.get_attributes">astronvim.status.hl.get_attributes(name, include_bg)</a></td>
+	<td class="summary">Merge the color and attributes from user settings for a given name</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#astronvim.status.hl.file_icon">astronvim.status.hl.file_icon(name)</a></td>
+	<td class="summary">Enable filetype color highlight if enabled in icon<em>highlights.file</em>icon options</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#astronvim.status.init.breadcrumbs">astronvim.status.init.breadcrumbs(opts)</a></td>
 	<td class="summary">An <code>init</code> function to build a set of children components for LSP breadcrumbs</td>
 	</tr>
@@ -99,8 +109,20 @@
 	<td class="summary">A provider function for the fill string</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#astronvim.status.provider.tabnr">astronvim.status.provider.tabnr()</a></td>
+	<td class="summary">A provider function for the current tab numbre</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#astronvim.status.provider.spell">astronvim.status.provider.spell(opts)</a></td>
+	<td class="summary">A provider function for showing if spellcheck is on</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#astronvim.status.provider.macro_recording">astronvim.status.provider.macro_recording(opts)</a></td>
 	<td class="summary">A provider function for displaying if a macro is currently being recorded</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#astronvim.status.provider.search_count">astronvim.status.provider.search_count(opts)</a></td>
+	<td class="summary">A provider function for displaying the current search count</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#astronvim.status.provider.mode_text">astronvim.status.provider.mode_text(opts)</a></td>
@@ -179,7 +201,7 @@
 	<td class="summary">A condition function if the window is currently active</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#astronvim.status.condition.buffer_matches">astronvim.status.condition.buffer_matches(patterns)</a></td>
+	<td class="name" nowrap><a href="#astronvim.status.condition.buffer_matches">astronvim.status.condition.buffer_matches(patterns, bufnr)</a></td>
 	<td class="summary">A condition function if the buffer filetype,buftype,bufname match a pattern</td>
 	</tr>
 	<tr>
@@ -187,11 +209,15 @@
 	<td class="summary">A condition function if a macro is being recorded</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#astronvim.status.condition.is_git_repo">astronvim.status.condition.is_git_repo()</a></td>
+	<td class="name" nowrap><a href="#astronvim.status.condition.is_hlsearch">astronvim.status.condition.is_hlsearch()</a></td>
+	<td class="summary">A condition function if search is visible</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#astronvim.status.condition.is_git_repo">astronvim.status.condition.is_git_repo(bufnr)</a></td>
 	<td class="summary">A condition function if the current file is in a git repo</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#astronvim.status.condition.git_changed">astronvim.status.condition.git_changed()</a></td>
+	<td class="name" nowrap><a href="#astronvim.status.condition.git_changed">astronvim.status.condition.git_changed(bufnr)</a></td>
 	<td class="summary">A condition function if there are any git changes</td>
 	</tr>
 	<tr>
@@ -203,11 +229,11 @@
 	<td class="summary">A condition function if the current buffer is read only</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#astronvim.status.condition.has_diagnostics">astronvim.status.condition.has_diagnostics()</a></td>
+	<td class="name" nowrap><a href="#astronvim.status.condition.has_diagnostics">astronvim.status.condition.has_diagnostics(bufnr)</a></td>
 	<td class="summary">A condition function if the current file has any diagnostics</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#astronvim.status.condition.has_filetype">astronvim.status.condition.has_filetype()</a></td>
+	<td class="name" nowrap><a href="#astronvim.status.condition.has_filetype">astronvim.status.condition.has_filetype(bufnr)</a></td>
 	<td class="summary">A condition function if there is a defined filetype</td>
 	</tr>
 	<tr>
@@ -215,11 +241,11 @@
 	<td class="summary">A condition function if Aerial is available</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#astronvim.status.condition.lsp_attached">astronvim.status.condition.lsp_attached()</a></td>
+	<td class="name" nowrap><a href="#astronvim.status.condition.lsp_attached">astronvim.status.condition.lsp_attached(bufnr)</a></td>
 	<td class="summary">A condition function if LSP is attached</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#astronvim.status.condition.treesitter_available">astronvim.status.condition.treesitter_available()</a></td>
+	<td class="name" nowrap><a href="#astronvim.status.condition.treesitter_available">astronvim.status.condition.treesitter_available(bufnr)</a></td>
 	<td class="summary">A condition function if treesitter is in use</td>
 	</tr>
 	<tr>
@@ -227,12 +253,16 @@
 	<td class="summary">A utility function to stylize a string with an icon from lspkind, separators, and left/right padding</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#astronvim.status.component.fill">astronvim.status.component.fill()</a></td>
+	<td class="name" nowrap><a href="#astronvim.status.component.fill">astronvim.status.component.fill(opts)</a></td>
 	<td class="summary">A Heirline component for filling in the empty space of the bar</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#astronvim.status.component.file_info">astronvim.status.component.file_info(opts)</a></td>
 	<td class="summary">A function to build a set of children components for an entire file information section</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#astronvim.status.component.tabline_file_info">astronvim.status.component.tabline_file_info(opts)</a></td>
+	<td class="summary">A function with different file_info defaults specifically for use in the tabline</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#astronvim.status.component.nav">astronvim.status.component.nav(opts)</a></td>
@@ -241,6 +271,10 @@
 	<tr>
 	<td class="name" nowrap><a href="#astronvim.status.component.macro_recording">astronvim.status.component.macro_recording(opts)</a></td>
 	<td class="summary">A function to build a set of children components for a macro recording section</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#astronvim.status.component.cmd_info">astronvim.status.component.cmd_info(opts)</a></td>
+	<td class="summary">A function to build a set of children components for information shown in the cmdline</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#astronvim.status.component.mode">astronvim.status.component.mode(opts)</a></td>
@@ -275,12 +309,16 @@
 	<td class="summary">A general function to build a section of astronvim status providers with highlights, conditions, and section surrounding</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#astronvim.status.utils.width">astronvim.status.utils.width(is_winbar)</a></td>
-	<td class="summary">A utility function to get the width of the bar</td>
+	<td class="name" nowrap><a href="#astronvim.status.utils.build_provider">astronvim.status.utils.build_provider(opts, provider)</a></td>
+	<td class="summary">Convert a component parameter table to a table that can be used with the component builder</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#astronvim.status.utils.make_flexible">astronvim.status.utils.make_flexible(priority)</a></td>
-	<td class="summary">Create a flexible statusline component</td>
+	<td class="name" nowrap><a href="#astronvim.status.utils.setup_providers">astronvim.status.utils.setup_providers(opts, providers, setup)</a></td>
+	<td class="summary">Convert key/value table of options to an array of providers for the component builder</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#astronvim.status.utils.width">astronvim.status.utils.width(is_winbar)</a></td>
+	<td class="summary">A utility function to get the width of the bar</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#astronvim.status.utils.surround">astronvim.status.utils.surround(separator, color, component, condition)</a></td>
@@ -301,6 +339,13 @@
 	<tr>
 	<td class="name" nowrap><a href="#astronvim.status.utils.decode_pos">astronvim.status.utils.decode_pos(c)</a></td>
 	<td class="summary">Decode a previously encoded position to it's sub parts</td>
+	</tr>
+</table>
+<h2><a href="#Fields">Fields</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#opts">opts</a></td>
+	<td class="summary">A provider function for showing if paste is enabled</td>
 	</tr>
 </table>
 
@@ -417,6 +462,67 @@
 
 </dd>
     <dt>
+    <a name = "astronvim.status.hl.get_attributes"></a>
+    <strong>astronvim.status.hl.get_attributes(name, include_bg)</strong>
+    </dt>
+    <dd>
+    Merge the color and attributes from user settings for a given name
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+         string, the name of the element to get the attributes and colors for
+        </li>
+        <li><span class="parameter">include_bg</span>
+         boolean whether or not to include background color (Default: false)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        a table of highlight information
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> heirline_component = { provider = <span class="string">"Example Provider"</span>, hl = astronvim.status.hl.get_attributes(<span class="string">"treesitter"</span>) },</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "astronvim.status.hl.file_icon"></a>
+    <strong>astronvim.status.hl.file_icon(name)</strong>
+    </dt>
+    <dd>
+    Enable filetype color highlight if enabled in icon<em>highlights.file</em>icon options
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+         string of the icon<em>highlights.file</em>icon table element
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        function for setting hl property in a component
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> heirline_component = { provider = <span class="string">"Example Provider"</span>, hl = astronvim.status.hl.file_icon(<span class="string">"winbar"</span>) },</pre>
+    </ul>
+
+</dd>
+    <dt>
     <a name = "astronvim.status.init.breadcrumbs"></a>
     <strong>astronvim.status.init.breadcrumbs(opts)</strong>
     </dt>
@@ -498,6 +604,62 @@
 
 </dd>
     <dt>
+    <a name = "astronvim.status.provider.tabnr"></a>
+    <strong>astronvim.status.provider.tabnr()</strong>
+    </dt>
+    <dd>
+    A provider function for the current tab numbre
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the statusline function to return a string for a tab number
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> heirline_component = { provider = astronvim.status.provider.tabnr() }</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "astronvim.status.provider.spell"></a>
+    <strong>astronvim.status.provider.spell(opts)</strong>
+    </dt>
+    <dd>
+    A provider function for showing if spellcheck is on
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">opts</span>
+         options passed to the stylize function
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the function for outputting if spell is enabled
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/core.utils.status.html#astronvim.status.utils.stylize">astronvim.status.utils.stylize</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> heirline_component = { provider = astronvim.status.provider.spell() }</pre>
+    </ul>
+
+</dd>
+    <dt>
     <a name = "astronvim.status.provider.macro_recording"></a>
     <strong>astronvim.status.provider.macro_recording(opts)</strong>
     </dt>
@@ -527,6 +689,39 @@
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="keyword">local</span> heirline_component = { provider = astronvim.status.provider.macro_recording() }</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "astronvim.status.provider.search_count"></a>
+    <strong>astronvim.status.provider.search_count(opts)</strong>
+    </dt>
+    <dd>
+    A provider function for displaying the current search count
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">opts</span>
+         options for <code>vim.fn.searchcount</code> and options passed to the stylize function
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        a function that returns a string of the current search location
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/core.utils.status.html#astronvim.status.utils.stylize">astronvim.status.utils.stylize</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> heirline_component = { provider = astronvim.status.provider.search_count() }</pre>
     </ul>
 
 </dd>
@@ -574,7 +769,7 @@
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">opts</span>
-         options passed to the stylize function
+         options for Top/Bot text, fixed width, and options passed to the stylize function
         </li>
     </ul>
 
@@ -1149,7 +1344,7 @@
 </dd>
     <dt>
     <a name = "astronvim.status.condition.buffer_matches"></a>
-    <strong>astronvim.status.condition.buffer_matches(patterns)</strong>
+    <strong>astronvim.status.condition.buffer_matches(patterns, bufnr)</strong>
     </dt>
     <dd>
     A condition function if the buffer filetype,buftype,bufname match a pattern
@@ -1158,9 +1353,10 @@
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">patterns</span>
-
-
-
+         the table of patterns to match
+        </li>
+        <li><span class="parameter">bufnr</span>
+         number of the buffer to match (Default: 0 [current])
         </li>
     </ul>
 
@@ -1202,13 +1398,42 @@
 
 </dd>
     <dt>
+    <a name = "astronvim.status.condition.is_hlsearch"></a>
+    <strong>astronvim.status.condition.is_hlsearch()</strong>
+    </dt>
+    <dd>
+    A condition function if search is visible
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        boolean of wether or not searching is currently visible
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> heirline_component = { provider = <span class="string">"Example Provider"</span>, condition = astronvim.status.condition.is_hlsearch }</pre>
+    </ul>
+
+</dd>
+    <dt>
     <a name = "astronvim.status.condition.is_git_repo"></a>
-    <strong>astronvim.status.condition.is_git_repo()</strong>
+    <strong>astronvim.status.condition.is_git_repo(bufnr)</strong>
     </dt>
     <dd>
     A condition function if the current file is in a git repo
 
 
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">bufnr</span>
+         a buffer number to check the condition for, a table with bufnr property, or nil to get the current buffer
+        </li>
+    </ul>
 
     <h3>Returns:</h3>
     <ol>
@@ -1226,12 +1451,18 @@
 </dd>
     <dt>
     <a name = "astronvim.status.condition.git_changed"></a>
-    <strong>astronvim.status.condition.git_changed()</strong>
+    <strong>astronvim.status.condition.git_changed(bufnr)</strong>
     </dt>
     <dd>
     A condition function if there are any git changes
 
 
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">bufnr</span>
+         a buffer number to check the condition for, a table with bufnr property, or nil to get the current buffer
+        </li>
+    </ul>
 
     <h3>Returns:</h3>
     <ol>
@@ -1258,9 +1489,7 @@
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">bufnr</span>
-
-
-
+         a buffer number to check the condition for, a table with bufnr property, or nil to get the current buffer
         </li>
     </ul>
 
@@ -1289,9 +1518,7 @@
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">bufnr</span>
-
-
-
+         a buffer number to check the condition for, a table with bufnr property, or nil to get the current buffer
         </li>
     </ul>
 
@@ -1311,12 +1538,18 @@
 </dd>
     <dt>
     <a name = "astronvim.status.condition.has_diagnostics"></a>
-    <strong>astronvim.status.condition.has_diagnostics()</strong>
+    <strong>astronvim.status.condition.has_diagnostics(bufnr)</strong>
     </dt>
     <dd>
     A condition function if the current file has any diagnostics
 
 
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">bufnr</span>
+         a buffer number to check the condition for, a table with bufnr property, or nil to get the current buffer
+        </li>
+    </ul>
 
     <h3>Returns:</h3>
     <ol>
@@ -1334,12 +1567,18 @@
 </dd>
     <dt>
     <a name = "astronvim.status.condition.has_filetype"></a>
-    <strong>astronvim.status.condition.has_filetype()</strong>
+    <strong>astronvim.status.condition.has_filetype(bufnr)</strong>
     </dt>
     <dd>
     A condition function if there is a defined filetype
 
 
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">bufnr</span>
+         a buffer number to check the condition for, a table with bufnr property, or nil to get the current buffer
+        </li>
+    </ul>
 
     <h3>Returns:</h3>
     <ol>
@@ -1374,18 +1613,25 @@
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> heirline_component = { provider = <span class="string">"Example Provider"</span>, condition = astronvim.status.condition.aerial_available }</pre>
+        <pre class="example"><span class="keyword">local</span> heirline_component = { provider = <span class="string">"Example Provider"</span>, condition = astronvim.status.condition.aerial_available }
+ <span class="keyword">function</span> astronvim.status.condition.aerial_available() <span class="keyword">return</span> astronvim.is_available <span class="string">"aerial.nvim"</span> <span class="keyword">end</span></pre>
     </ul>
 
 </dd>
     <dt>
     <a name = "astronvim.status.condition.lsp_attached"></a>
-    <strong>astronvim.status.condition.lsp_attached()</strong>
+    <strong>astronvim.status.condition.lsp_attached(bufnr)</strong>
     </dt>
     <dd>
     A condition function if LSP is attached
 
 
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">bufnr</span>
+         a buffer number to check the condition for, a table with bufnr property, or nil to get the current buffer
+        </li>
+    </ul>
 
     <h3>Returns:</h3>
     <ol>
@@ -1403,12 +1649,18 @@
 </dd>
     <dt>
     <a name = "astronvim.status.condition.treesitter_available"></a>
-    <strong>astronvim.status.condition.treesitter_available()</strong>
+    <strong>astronvim.status.condition.treesitter_available(bufnr)</strong>
     </dt>
     <dd>
     A condition function if treesitter is in use
 
 
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">bufnr</span>
+         a buffer number to check the condition for, a table with bufnr property, or nil to get the current buffer
+        </li>
+    </ul>
 
     <h3>Returns:</h3>
     <ol>
@@ -1438,7 +1690,7 @@
          the string to stylize
         </li>
         <li><span class="parameter">opts</span>
-         options of <code>{ padding = { left = 0, right = 0 }, separator = { left = &quot;|&quot;, right = &quot;|&quot; }, icon = { kind = &quot;NONE&quot;, padding = { left = 0, right = 0 } } }</code>
+         options of <code>{ padding = { left = 0, right = 0 }, separator = { left = &quot;|&quot;, right = &quot;|&quot; }, show_empty = false, icon = { kind = &quot;NONE&quot;, padding = { left = 0, right = 0 } } }</code>
         </li>
     </ul>
 
@@ -1458,12 +1710,18 @@
 </dd>
     <dt>
     <a name = "astronvim.status.component.fill"></a>
-    <strong>astronvim.status.component.fill()</strong>
+    <strong>astronvim.status.component.fill(opts)</strong>
     </dt>
     <dd>
     A Heirline component for filling in the empty space of the bar
 
 
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">opts</span>
+         options for configuring the other fields of the heirline component
+        </li>
+    </ul>
 
     <h3>Returns:</h3>
     <ol>
@@ -1505,6 +1763,35 @@
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="keyword">local</span> heirline_component = astronvim.status.component.file_info()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "astronvim.status.component.tabline_file_info"></a>
+    <strong>astronvim.status.component.tabline_file_info(opts)</strong>
+    </dt>
+    <dd>
+    A function with different file_info defaults specifically for use in the tabline
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">opts</span>
+         options for configuring file<em>icon, filename, filetype, file</em>modified, file<em>read</em>only, and the overall padding
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        The Heirline component table
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> heirline_component = astronvim.status.component.tabline_file_info()</pre>
     </ul>
 
 </dd>
@@ -1562,7 +1849,37 @@
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">local</span> heirline_component = astronvim.status.component.macro_recording()</pre>
+        <pre class="example"><span class="keyword">local</span> heirline_component = astronvim.status.component.macro_recording()
+ TODO: deprecate on <span class="global">next</span> major version release</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "astronvim.status.component.cmd_info"></a>
+    <strong>astronvim.status.component.cmd_info(opts)</strong>
+    </dt>
+    <dd>
+    A function to build a set of children components for information shown in the cmdline
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">opts</span>
+         options for configuring macro recording, search count, and the overall padding
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        The Heirline component table
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> heirline_component = astronvim.status.component.cmd_info()</pre>
     </ul>
 
 </dd>
@@ -1577,7 +1894,7 @@
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">opts</span>
-         options for configuring mode text and the overall padding
+         options for configuring mode_text, paste, spell, and the overall padding
         </li>
     </ul>
 
@@ -1799,6 +2116,65 @@
 
 </dd>
     <dt>
+    <a name = "astronvim.status.utils.build_provider"></a>
+    <strong>astronvim.status.utils.build_provider(opts, provider)</strong>
+    </dt>
+    <dd>
+    Convert a component parameter table to a table that can be used with the component builder
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">opts</span>
+         a table of provider options
+        </li>
+        <li><span class="parameter">provider</span>
+         a provider in <code>astronvim.status.providers</code>
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the provider table that can be used in <a href="../modules/core.utils.status.html#astronvim.status.component.builder">astronvim.status.component.builder</a>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "astronvim.status.utils.setup_providers"></a>
+    <strong>astronvim.status.utils.setup_providers(opts, providers, setup)</strong>
+    </dt>
+    <dd>
+    Convert key/value table of options to an array of providers for the component builder
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">opts</span>
+         the table of options for the components
+        </li>
+        <li><span class="parameter">providers</span>
+         an ordered list like array of providers that are configured in the options table
+        </li>
+        <li><span class="parameter">setup</span>
+         a function that takes provider options table, provider name, provider index and returns the setup provider table, optional, default is <a href="../modules/core.utils.status.html#astronvim.status.utils.build_provider">astronvim.status.utils.build_provider</a>
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the fully setup options table with the appropriately ordered providers
+    </ol>
+
+
+
+
+</dd>
+    <dt>
     <a name = "astronvim.status.utils.width"></a>
     <strong>astronvim.status.utils.width(is_winbar)</strong>
     </dt>
@@ -1817,31 +2193,6 @@
     <ol>
 
         the width of the specified bar
-    </ol>
-
-
-
-
-</dd>
-    <dt>
-    <a name = "astronvim.status.utils.make_flexible"></a>
-    <strong>astronvim.status.utils.make_flexible(priority)</strong>
-    </dt>
-    <dd>
-    Create a flexible statusline component
-
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">priority</span>
-         the priority of the element
-        </li>
-    </ul>
-
-    <h3>Returns:</h3>
-    <ol>
-
-        the flexible component that switches between components to fit the width
     </ol>
 
 
@@ -1983,13 +2334,36 @@
 
 </dd>
 </dl>
+    <h2 class="section-header "><a name="Fields"></a>Fields</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "opts"></a>
+    <strong>opts</strong>
+    </dt>
+    <dd>
+    A provider function for showing if paste is enabled
+
+
+    <ul>
+        <li><span class="parameter">opts</span>
+         options passed to the stylize function
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
 
 
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2022-10-29 18:25:59 </i>
+<i style="float:right;">Last updated 2023-02-26 13:52:37 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>
